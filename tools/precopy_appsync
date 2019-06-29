@@ -1,0 +1,11 @@
+#!/bin/bash -eux
+
+# /usr/local/bin/precopy_appsync
+rsync -auv \
+      --delete \
+      --exclude='.#*' \
+      --exclude='.git/*' \
+      --exclude='_build/*' \
+      --exclude='deps/*' \
+      --exclude='node_modules/*' \
+      /host_sync/ /app_sync

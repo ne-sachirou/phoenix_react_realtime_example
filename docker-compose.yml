@@ -1,0 +1,41 @@
+---
+version: "3"
+
+services:
+  web:
+    build: .
+    depends_on: [web-src]
+    environment: {}
+    logging:
+      options:
+        max-size: "100m"
+        max-file: "2"
+    ports:
+      - 4000:4000
+    volumes:
+      - web-src:/var/www
+
+  web-src:
+    image: eugenmayer/unison:2.51.2.1
+    environment:
+      APP_VOLUME: /app_sync
+      HOST_VOLUME: /host_sync
+      TZ: Asia/Tokyo
+      UNISON_ARGS: ""
+      # UNISON_ARGS: |
+      #   -debug default -prefer /host_sync -numericids -auto -batch \
+      #   -ignore 'Name .#*' \
+      #   -ignore 'Name .git/*' \
+      #   -ignore 'Name _build/*' \
+      #   -ignore 'Name deps/*' \
+      #   -ignore 'Name node_modules/*' \
+      UNISON_DEST: /app_sync
+      UNISON_SRC: /host_sync
+      UNISON_WATCH_ARGS: -repeat watch
+    volumes:
+      # - .:/host_sync:cached
+      - /c/Users/c4se/dev/phx_react_realtime_example_umbrella:/host_sync:cached
+      - web-src:/app_sync
+
+volumes:
+  web-src:
