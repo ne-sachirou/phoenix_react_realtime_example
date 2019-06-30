@@ -62,7 +62,7 @@ channel
     console.log("Joined successfully", resp);
   })
   .receive("error", resp => {
-    console.log("Unable to join", resp);
+    console.error("Unable to join", resp);
   });
 
 export default socket;

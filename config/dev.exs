@@ -52,7 +52,8 @@ config :example_web, ExampleWeb.Endpoint,
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
       ~r"lib/example_web/{live,views}/.*(ex)$",
-      ~r"lib/example_web/templates/.*(eex)$"
+      ~r"lib/example_web/templates/.*(eex)$",
+      ~r{lib/hello_web/live/.*(ex)$}
     ]
   ]
 

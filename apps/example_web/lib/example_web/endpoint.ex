@@ -1,6 +1,8 @@
 defmodule ExampleWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :example_web
 
+  socket "/live", Phoenix.LiveView.Socket
+
   socket "/socket", ExampleWeb.UserSocket,
     websocket: true,
     longpoll: false
